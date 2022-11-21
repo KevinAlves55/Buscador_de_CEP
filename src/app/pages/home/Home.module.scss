@@ -45,3 +45,16 @@
     }
   }
 }
+
+.container_infos_cep {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 55px;
+  padding: 2rem;
+  background-color: var(--gray-700);
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
