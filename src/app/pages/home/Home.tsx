@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { PatternFormat } from "react-number-format";
@@ -19,6 +19,7 @@ interface IDadosCep {
 }
 
 export const Home: React.FC = () => {
+  const [status, setStatus] = useState(false);
   const [cep, setCep] = useState("");
   const [dadosCep, setDadosCep] = useState<IDadosCep>({} as IDadosCep);
 
@@ -29,6 +30,7 @@ export const Home: React.FC = () => {
       axios(`https://viacep.com.br/ws/${cep}/json/`).then(result => {
         if (!result.data.erro) {
           setDadosCep(result.data);
+          setStatus(true);
         } else {
           toast.error("CEP não encontrado")
         }
@@ -52,15 +54,17 @@ export const Home: React.FC = () => {
         <button onClick={() => buscarDados(cep)}>Buscar</button>
       </div>
 
-      <div className={Style.container_infos_cep}>
-        <InfoCep text="Cep: " value={dadosCep.cep ?? "Aguardando CEP..."} />
-        <InfoCep text="Estado: " value={dadosCep.uf ?? "Aguardando CEP..."} />
-        <InfoCep text="Cidade: " value={dadosCep.localidade ?? "Aguardando CEP..."} />
-        <InfoCep text="Endereço: " value={dadosCep.logradouro ?? "Aguardando CEP..."} />
-        <InfoCep text="Rua: " value={dadosCep.bairro ?? "Aguardando CEP..."} />
-        <InfoCep text="Código postal: " value={dadosCep.gia ?? "Aguardando CEP..."} />
-        <InfoCep text="DDD: " value={dadosCep.ddd ?? "Aguardando CEP..."} />
-      </div>
+      {(status && (
+        <div className={Style.container_infos_cep}>
+          <InfoCep text="Cep: " value={dadosCep.cep ?? "Informação não encontrada"} />
+          <InfoCep text="Estado: " value={dadosCep.uf ?? "Informação não encontrada"} />
+          <InfoCep text="Cidade: " value={dadosCep.localidade ?? "Informação não encontrada"} />
+          <InfoCep text="Endereço: " value={dadosCep.logradouro ?? "Informação não encontrada"} />
+          <InfoCep text="Rua: " value={dadosCep.bairro ?? "Informação não encontrada"} />
+          <InfoCep text="Código postal: " value={dadosCep.gia ?? "Informação não encontrada"} />
+          <InfoCep text="DDD: " value={dadosCep.ddd ?? "Informação não encontrada"} />
+        </div>
+      ))}
     </>
   );
 };
