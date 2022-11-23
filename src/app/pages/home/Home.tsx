@@ -24,9 +24,7 @@ export const Home: React.FC = () => {
   const [dadosCep, setDadosCep] = useState<IDadosCep>({} as IDadosCep);
 
   const buscarDados = async (cep: string) => {
-    if (cep === "") {
-      toast.error("CEP vazio");
-    } else {
+    if (cep.length === 8) {
       axios(`https://viacep.com.br/ws/${cep}/json/`).then(result => {
         if (!result.data.erro) {
           setDadosCep(result.data);
@@ -35,6 +33,8 @@ export const Home: React.FC = () => {
           toast.error("CEP não encontrado")
         }
       });
+    } else {
+      toast.error("CEP inválido");
     }
   };
 
@@ -49,7 +49,7 @@ export const Home: React.FC = () => {
           className={Style.input}
           placeholder="Digite seu CEP..."
           type="text"
-          onChange={e => setCep(e.target.value)}
+          onValueChange={e => setCep(e.value)}
         />
         <button onClick={() => buscarDados(cep)}>Buscar</button>
       </div>
