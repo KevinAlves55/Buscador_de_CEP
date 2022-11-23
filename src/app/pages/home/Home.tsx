@@ -56,13 +56,13 @@ export const Home: React.FC = () => {
 
       {(status && (
         <div className={Style.container_infos_cep}>
-          <InfoCep text="Cep: " value={dadosCep.cep ?? "Informação não encontrada"} />
-          <InfoCep text="Estado: " value={dadosCep.uf ?? "Informação não encontrada"} />
-          <InfoCep text="Cidade: " value={dadosCep.localidade ?? "Informação não encontrada"} />
-          <InfoCep text="Endereço: " value={dadosCep.logradouro ?? "Informação não encontrada"} />
-          <InfoCep text="Rua: " value={dadosCep.bairro ?? "Informação não encontrada"} />
-          <InfoCep text="Código postal: " value={dadosCep.gia ?? "Informação não encontrada"} />
-          <InfoCep text="DDD: " value={dadosCep.ddd ?? "Informação não encontrada"} />
+          <InfoCep text="Cep: " value={dadosCep.cep === "" ? "Informação não encontrada" : dadosCep.cep} />
+          <InfoCep text="Estado: " value={dadosCep.uf === "" ? "Informação não encontrada" : dadosCep.uf} />
+          <InfoCep text="Cidade: " value={dadosCep.localidade === "" ? "Informação não encontrada" : dadosCep.localidade} />
+          <InfoCep text="Endereço: " value={dadosCep.logradouro === "" ? "Informação não encontrada" : dadosCep.logradouro} />
+          <InfoCep text="Rua: " value={dadosCep.bairro === "" ? "Informação não encontrada" : dadosCep.bairro} />
+          <InfoCep text="Código postal: " value={dadosCep.gia === "" ? "Informação não encontrada" : dadosCep.gia} />
+          <InfoCep text="DDD: " value={dadosCep.ddd === "" ? "Informação não encontrada" : dadosCep.ddd} />
         </div>
       ))}
     </>
