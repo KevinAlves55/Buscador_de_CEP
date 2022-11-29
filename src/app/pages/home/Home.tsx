@@ -32,11 +32,13 @@ export const Home: React.FC = () => {
           setDadosCep(result.data);
           setMostrarInformacoes(true);
         } else {
-          toast.error("CEP não encontrado")
+          toast.error("CEP não encontrado");
+          setMostrarInformacoes(false);
         }
       });
     } else {
       toast.error("CEP inválido");
+      setMostrarInformacoes(false);
     }
   };
 

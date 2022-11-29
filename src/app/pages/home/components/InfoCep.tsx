@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import copy from "copy-to-clipboard";
 import { BsClipboard } from "react-icons/bs";
 
@@ -14,7 +12,7 @@ interface IInfoCep {
 export const InfoCep: React.FC<IInfoCep> = ({ text, value }) => {
   const copiarParaAreaDeTransferencia = () => {
     copy(String(value));
-    toast.success("Dado copiado para a área de transferência")
+    toast.success("Dado copiado para a área de transferência");
   };
 
   return (
